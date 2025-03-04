@@ -3,6 +3,15 @@ import { Link } from "react-router-dom";
 import logo from "../assets/FundsAudit.jpg";
 import { Mail, Phone, MapPin, Linkedin, Instagram, Youtube } from "lucide-react";
 
+// Function to handle redirects
+const handleRedirect = (type, value) => {
+  if (type === "phone") {
+    window.location.href = `tel:${value}`;
+  } else if (type === "email") {
+    window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${value}`, "_blank");
+  }
+};
+
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white py-12">
@@ -62,11 +71,17 @@ const Footer = () => {
                   Pune, Maharashtra 411001
                 </span>
               </li>
-              <li className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-3">
+              <li 
+                className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-3 cursor-pointer hover:text-white"
+                onClick={() => handleRedirect("phone", "+918421034535")}
+              >
                 <Phone size={24} className="text-teal-400 flex-shrink-0" />
                 <span className="text-gray-400">+91 8421034535<br />+91 8446874534</span>
               </li>
-              <li className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-3">
+              <li 
+                className="flex flex-col md:flex-row items-start md:items-center space-x-0 md:space-x-3 cursor-pointer hover:text-white"
+                onClick={() => handleRedirect("email", "fundsaudit.business@gmail.com")}
+              >
                 <Mail size={24} className="text-teal-400 flex-shrink-0" />
                 <span className="text-gray-400">fundsaudit.business@gmail.com</span>
               </li>
