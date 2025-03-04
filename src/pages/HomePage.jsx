@@ -5,7 +5,7 @@ import { Users, Store, Building2, Play } from "lucide-react"
 import fundsauditVideo from "../assets/videos/fundsaudit_video.mp4"
 import World from "../components/world"
 import Safe from '../components/Safesection'
-
+import ScrollingImages from '../components/ScrollingImages'
 
 const HomePage = () => {
   const videoRef = useRef(null)
@@ -127,94 +127,8 @@ const HomePage = () => {
             <div
               className={isVisible.howItWorks ? "slide-in-left" : "opacity-0"}
             >
-              <h3 className="text-2xl font-bold text-gray-800 mb-4 hover:text-teal-600 transition-colors duration-300">
-                Simplify Your Financial Management
-              </h3>
-              <p className="text-gray-600 mb-6">
-                Our application provides a seamless experience for managing your
-                finances, tracking expenses, and ensuring compliance with
-                auditing standards.
-              </p>
-              <ul className="space-y-4">
-                <li className="flex items-start space-x-3 hover:translate-x-2 transition-transform duration-300">
-                  <div className="bg-teal-100 p-2 rounded-full text-teal-600 float">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M20 6L9 17l-5-5"></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-gray-800 hover:text-teal-600 transition-colors duration-300">
-                      Easy Setup
-                    </h4>
-                    <p className="text-gray-600">
-                      Get started in minutes with our intuitive onboarding
-                      process.
-                    </p>
-                  </div>
-                </li>
-                <li className="flex items-start space-x-3 hover:translate-x-2 transition-transform duration-300">
-                  <div className="bg-teal-100 p-2 rounded-full text-teal-600 float delay-200">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M20 6L9 17l-5-5"></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-gray-800 hover:text-teal-600 transition-colors duration-300">
-                      Real-time Tracking
-                    </h4>
-                    <p className="text-gray-600">
-                      Monitor your finances in real-time with comprehensive
-                      dashboards.
-                    </p>
-                  </div>
-                </li>
-                <li className="flex items-start space-x-3 hover:translate-x-2 transition-transform duration-300">
-                  <div className="bg-teal-100 p-2 rounded-full text-teal-600 float delay-400">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M20 6L9 17l-5-5"></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-gray-800 hover:text-teal-600 transition-colors duration-300">
-                      Secure & Compliant
-                    </h4>
-                    <p className="text-gray-600">
-                      Bank-level security and compliance with financial
-                      regulations.
-                    </p>
-                  </div>
-                </li>
-              </ul>
+              <ScrollingImages />
+              
             </div>
             <div
               className={`relative rounded-lg overflow-hidden shadow-xl ${
@@ -238,6 +152,8 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      
      
       {/* Who We Serve Section */}
       <section id="whoWeServe" className="py-16 bg-teal-50">
