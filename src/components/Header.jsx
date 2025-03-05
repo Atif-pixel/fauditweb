@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Download, Menu, X } from "lucide-react";
-import logo from "../assets/FundsAudit.jpg"; 
+import logo from "../assets/FundsAudit.jpg";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,27 +13,69 @@ const Header = () => {
 
   const isActive = (path) => {
     return location.pathname === path
-      ? "text-teal-600 font-medium"
-      : "text-gray-700 hover:text-teal-600";
+      ? { color: "#0d9488", fontWeight: "600" } // Active link style
+      : { color: "#ffffff", fontWeight: "400" }; // Default link style
   };
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex justify-between items-center">
-          <Link to="/" className="flex items-center space-x-3">
-            <img src={logo} alt="FundsAudit Logo" className="h-10 w-auto" />
+    <header
+      style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 50,
+        backgroundColor: "rgba(10, 16, 35, 0.8)", // Semi-transparent background
+        backdropFilter: "blur(10px)", // Blur effect for transparency
+        boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "1rem",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Link to="/" style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+            <img src={logo} alt="FundsAudit Logo" style={{ height: "40px", width: "auto" }} />
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/" className={`${isActive("/")} transition-colors duration-300`}>
+          <nav style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
+            <Link
+              to="/"
+              style={{
+                ...isActive("/"),
+                transition: "color 0.3s ease",
+                textDecoration: "none",
+              }}
+            >
               Home
             </Link>
-            <Link to="/about" className={`${isActive("/about")} transition-colors duration-300`}>
+            <Link
+              to="/about"
+              style={{
+                ...isActive("/about"),
+                transition: "color 0.3s ease",
+                textDecoration: "none",
+              }}
+            >
               About
             </Link>
-            <Link to="/contact" className={`${isActive("/contact")} transition-colors duration-300`}>
+            <Link
+              to="/contact"
+              style={{
+                ...isActive("/contact"),
+                transition: "color 0.3s ease",
+                textDecoration: "none",
+              }}
+            >
               Contact
             </Link>
 
@@ -41,7 +83,20 @@ const Header = () => {
               href="https://play.google.com/store/apps/details?id=com.fundsroom.fundsaudit&pcampaignid=web_share"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-md flex items-center space-x-2 transition-colors duration-300"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                backgroundColor: "#00FFCC",
+                color: "#0A1023",
+                padding: "0.5rem 1rem",
+                borderRadius: "0.375rem",
+                fontWeight: "600",
+                textDecoration: "none",
+                transition: "background-color 0.3s ease",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#00CCAA")}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#00FFCC")}
             >
               <Download size={18} />
               <span>Download App</span>
@@ -49,28 +104,79 @@ const Header = () => {
           </nav>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden text-gray-700" onClick={toggleMenu}>
+          <button
+            style={{
+              display: "none", // Hidden on desktop
+              color: "#ffffff",
+              backgroundColor: "transparent",
+              border: "none",
+              cursor: "pointer",
+            }}
+            onClick={toggleMenu}
+          >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden mt-4 pb-4 space-y-4">
-            <Link to="/" className={`block py-2 ${isActive("/")}`} onClick={toggleMenu}>
+          <nav
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "1rem",
+              padding: "1rem 0",
+            }}
+          >
+            <Link
+              to="/"
+              style={{
+                ...isActive("/"),
+                textDecoration: "none",
+                padding: "0.5rem 0",
+              }}
+              onClick={toggleMenu}
+            >
               Home
             </Link>
-            <Link to="/about" className={`block py-2 ${isActive("/about")}`} onClick={toggleMenu}>
+            <Link
+              to="/about"
+              style={{
+                ...isActive("/about"),
+                textDecoration: "none",
+                padding: "0.5rem 0",
+              }}
+              onClick={toggleMenu}
+            >
               About
             </Link>
-            <Link to="/contact" className={`block py-2 ${isActive("/contact")}`} onClick={toggleMenu}>
+            <Link
+              to="/contact"
+              style={{
+                ...isActive("/contact"),
+                textDecoration: "none",
+                padding: "0.5rem 0",
+              }}
+              onClick={toggleMenu}
+            >
               Contact
             </Link>
             <a
               href="https://play.google.com/store/apps/details?id=com.fundsroom.fundsaudit&pcampaignid=web_share"
               target="_blank"
               rel="noopener noreferrer"
-              className="block bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-md flex items-center space-x-2 w-fit"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                backgroundColor: "#00FFCC",
+                color: "#0A1023",
+                padding: "0.5rem 1rem",
+                borderRadius: "0.375rem",
+                fontWeight: "600",
+                textDecoration: "none",
+                transition: "background-color 0.3s ease",
+              }}
             >
               <Download size={18} />
               <span>Download App</span>
