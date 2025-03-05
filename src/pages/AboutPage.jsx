@@ -9,6 +9,8 @@ import masroorSir from "../assets/staff/masroor_sir.jpg";
 import poojamam from '../assets/staff/pooja_mam.png';
 import adarshsir from '../assets/staff/adarsh_sir.png';
 import prashantsir from '../assets/staff/prashant_sir.png';
+import { FaLinkedin } from "react-icons/fa";
+import PremiumTeamSection from "../components/PremiumTeamSection";
 
 const AboutPage = () => {
   const [isVisible, setIsVisible] = useState({
@@ -463,94 +465,9 @@ const AboutPage = () => {
           </div>
         </div>
       </section>  
-     {/* Team Section */}
-<section id="team" className="py-16 bg-gradient-teal">
-  <div className="container mx-auto px-4">
-    <h2 className="section-title text-center mx-auto mb-12 fade-in">Our Team</h2>
-
-    {/* CEO Section */}
-    <div className="mb-12 text-center">
-      <h3 className="text-2xl font-bold mb-6 text-teal-600">CEO & Co-Founder</h3>
-      <div className="flex justify-center">
-        <div className="card w-80 overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-500">
-        <img src={masroorSir} alt="CEO" className="w-full h-64 object-cover hover:scale-105 transition-transform duration-700" />
-          <div className="p-6">
-            <h3 className="text-xl font-bold mb-2 hover:text-teal-600 transition-colors duration-300">Masroor Khan</h3>
-            <p className="text-gray-600">Leading with innovation and excellence for over several years.</p>
-          </div>
-        </div>
-      </div>
+      <div>
+      <PremiumTeamSection />
     </div>
-
-    {/* Business Department with One Main Image and Two Sub Images */}
-    <div className="mb-12">
-      <h3 className="text-2xl font-bold text-center mb-6 text-teal-600">Business Department</h3>
-
-      <div className="flex flex-col items-center">
-        {/* Main Image */}
-        <div className="w-80 lg:w-96 overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-500">
-        <img src={poojamam} alt="Branch Manager" className="w-full h-64 object-cover hover:scale-105 transition-transform duration-700" />
-          <div className="p-6 text-center">
-            <h3 className="text-xl font-bold mb-2 hover:text-teal-600 transition-colors duration-300">Pooja Shedge</h3>
-            <p className="text-gray-600">Head of Business Development</p>
-          </div>
-        </div>
-
-        {/* Sub Images */}
-        <div className="grid grid-cols-2 gap-8 mt-8">
-          {[
-            { name: "Adarsh", role: "Business Strategist", img: "src/assets/staff/adarsh_sir.png" },
-            { name: "Prashant", role: "Marketing Head", img: "src/assets/staff/prashant_sir.png" }
-          ].map((member, index) => (
-            <div key={index} className="w-64 overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-500">
-              <img src={member.img} alt={member.name} className="w-full h-48 object-cover hover:scale-105 transition-transform duration-700" />
-              <div className="p-4 text-center">
-                <h3 className="text-lg font-bold mb-2 hover:text-teal-600">{member.name}</h3>
-                <p className="text-gray-600">{member.role}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-
-    {/* Other Departments */}
-    {[
-      {
-        title: "Tech Department",
-        members: [
-          { name: "Arya Mehta", role: "Jr SDE", img: "src/assets/staff/arya_sir.jpg" },
-          { name: "Nikita Watpal", role: "Jr SDE", img: "src/assets/staff/nikita_mam.jpg" },
-        ]
-      },
-      {
-        title: "A&F Department",
-        members: [
-          { name: "Ittika", role: "Head of A&F", img: "src/assets/staff/ittika_mam.png" },
-          { name: "Moiz", role: "Financial Analyst", img: "src/assets/staff/moiz_sir.jpg" },
-        ]
-      }
-    ].map((dept, deptIndex) => (
-      <div key={deptIndex} className="mb-12">
-        <h3 className="text-2xl font-bold text-center mb-6 text-teal-600">{dept.title}</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {dept.members.map((member, index) => (
-            <div key={index} className="card overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-500">
-              <img src={member.img} alt={member.name} className="w-full h-64 object-cover hover:scale-105 transition-transform duration-700" />
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 hover:text-teal-600">{member.name}</h3>
-                <p className="text-gray-600">{member.role}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    ))}
-  </div>
-</section>
-
-
-  
     </div>
   )
 }
