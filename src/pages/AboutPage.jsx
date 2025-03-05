@@ -4,12 +4,9 @@ import { OrbitControls, Torus } from "@react-three/drei";
 import { FileCheck, Shield, TrendingUp, Briefcase } from "lucide-react";
 import aboutImage from "../assets/funds.jpg"; // Update with your image path
 import Counter from '../components/counter';
-import masroorSir from "../assets/staff/masroor_sir.jpg";
-import poojamam from '../assets/staff/pooja_mam.png';
-import adarshsir from '../assets/staff/adarsh_sir.png';
-import prashantsir from '../assets/staff/prashant_sir.png';
-import { FaLinkedin } from "react-icons/fa";
 import PremiumTeamSection from "../components/PremiumTeamSection";
+import Joinus from "../components/Joinus";
+import OurTeam from "../components/OurTeam";
 
 const AboutPage = () => {
   const [isVisible, setIsVisible] = useState({
@@ -464,6 +461,8 @@ const AboutPage = () => {
       </section>  
       <div>
       <PremiumTeamSection />
+      <OurTeam />
+      <Joinus />
     </div>
     </div>
   )
