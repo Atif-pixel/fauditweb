@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const counterData = [
-  { id: 1, count: 20000, label: "D o w n l o a d s", top: "10%", left: "20%",suffix: "+" },
-  { id: 2, count: 50, label: "C i t i e s", top: "40%", left: "18%" },
+  { id: 1, count: 20000, label: "D o w n l o a d s", top: "10%", left: "20%", suffix: "+" },
+  { id: 2, count: 50, label: "C i t i e s", top: "40%", left: "18%", suffix: "+" },
   { id: 3, count: 132, label: "T r a n s a c t i o n s", bottom: "5%", left: "20%", suffix: "cr+" },
   { id: 4, count: 600, label: "A U M", top: "20%", right: "20%", suffix: "cr+" },
   { id: 5, count: 18000, label: "Active Users", bottom: "15%", right: "20%" },
@@ -12,38 +12,45 @@ const RotatingWorld = () => {
   const globeRef = useRef(null);
   const [rotation, setRotation] = useState(0);
   const [animatedCounts, setAnimatedCounts] = useState({});
+  const [hasStartedCounting, setHasStartedCounting] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setRotation(window.scrollY / 2);
+
+      if (!hasStartedCounting && globeRef.current.getBoundingClientRect().top < window.innerHeight) {
+        setHasStartedCounting(true);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [hasStartedCounting]);
 
   useEffect(() => {
-    counterData.forEach((item) => {
-      const targetCount = item.count;
-      const duration = 2000; // Animation duration in milliseconds
-      const increment = targetCount / (duration / 16); // 16ms per frame for smooth animation
+    if (hasStartedCounting) {
+      counterData.forEach((item) => {
+        const targetCount = item.count;
+        const duration = 2000; // Animation duration in milliseconds
+        const increment = targetCount / (duration / 16); // 16ms per frame for smooth animation
 
-      let currentCount = 0;
+        let currentCount = 0;
 
-      const interval = setInterval(() => {
-        currentCount += increment;
-        if (currentCount >= targetCount) {
-          currentCount = targetCount;
-          clearInterval(interval);
-        }
+        const interval = setInterval(() => {
+          currentCount += increment;
+          if (currentCount >= targetCount) {
+            currentCount = targetCount;
+            clearInterval(interval);
+          }
 
-        setAnimatedCounts((prevCounts) => ({
-          ...prevCounts,
-          [item.id]: Math.floor(currentCount),
-        }));
-      }, 16); // 16ms for ~60fps
-    });
-  }, []);
+          setAnimatedCounts((prevCounts) => ({
+            ...prevCounts,
+            [item.id]: Math.floor(currentCount),
+          }));
+        }, 16); // 16ms for ~60fps
+      });
+    }
+  }, [hasStartedCounting]);
 
   return (
     <div style={styles.container}>

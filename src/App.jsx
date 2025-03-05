@@ -7,11 +7,13 @@ import AboutPage from "./pages/AboutPage"
 import ContactPage from "./pages/ContactPage"
 
 
+
 function App() {
   return (
     <Router>
       <div className="flex flex-col min-h-screen bg-gray-50">
         <Header />
+        
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<HomePage />} />

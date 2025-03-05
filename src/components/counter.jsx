@@ -6,7 +6,7 @@ const StatsSection = () => {
     { count: 20000, label: "Downloads", icon: "fa-user-plus" },
     { count: 18000, label: "Active Users", icon: "fa-users" },
     { count: 600, label: "Total AUM", suffix: "Cr+", icon: "fa-landmark" },
-    { count: 132, label: "TotalTransactions", suffix: "Cr+",icon: "fa-graduation-cap" }
+    { count: 132, label: "Total Transactions", suffix: "Cr+", icon: "fa-graduation-cap" }
   ];
 
   return (
@@ -15,12 +15,12 @@ const StatsSection = () => {
         {stats.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col items-center justify-center bg-blue-100 p-4 lg:p-6 rounded-md shadow-lg"
+            className="flex flex-col items-center justify-center bg-teal-100 p-4 lg:p-6 rounded-md shadow-lg"
           >
-            <div className="text-3xl lg:text-4xl text-primary-700 mb-4">
+            <div className="text-3xl lg:text-4xl text-teal-700 mb-4">
               <i className={`fas ${item.icon}`} aria-hidden="true"></i>
             </div>
-            <div className="text-xl lg:text-3xl font-bold text-gray-900">
+            <div className="text-xl lg:text-3xl font-bold text-teal-900">
               <VisibilitySensor partialVisibility>
                 {({ isVisible }) =>
                   isVisible ? (
@@ -31,7 +31,7 @@ const StatsSection = () => {
                 }
               </VisibilitySensor>
             </div>
-            <p className="text-gray-600 mt-2">{item.label}</p>
+            <p className="text-teal-600 mt-2">{item.label}</p>
           </div>
         ))}
       </div>

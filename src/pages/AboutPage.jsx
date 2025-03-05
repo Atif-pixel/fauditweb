@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Torus } from "@react-three/drei";
 import { FileCheck, Shield, TrendingUp, Briefcase } from "lucide-react";
 import aboutImage from "../assets/funds.jpg"; // Update with your image path
-import Counter from '../components/counter';
 import PremiumTeamSection from "../components/PremiumTeamSection";
 import Joinus from "../components/Joinus";
 import OurTeam from "../components/OurTeam";
+import Journey from '../components/journey';
 
 const AboutPage = () => {
   const [isVisible, setIsVisible] = useState({
@@ -48,22 +46,9 @@ const AboutPage = () => {
 
   return (
     <div className="bg-gray-50-80">
-      Hero Section with 3D Element
+   
       <section id="hero" className="relative h-[400px] overflow-hidden">
         <div className="absolute inset-0">
-          {/* <Canvas>
-            <ambientLight intensity={0.5} />
-            <directionalLight position={[10, 10, 5]} intensity={1} />
-            <Torus args={[3, 1, 16, 100]} position={[0, 0, 0]}>
-              <meshStandardMaterial
-                color="#008080"
-                wireframe
-                opacity={0.2}
-                transparent={true}
-              />
-            </Torus>
-            <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={2} />
-          </Canvas> */}
          
         </div>
 
@@ -462,9 +447,8 @@ const AboutPage = () => {
         </div>
       </section>  
       <div>
-      <PremiumTeamSection />
       <OurTeam />
-      <Joinus />
+    
     </div>
     </div>
   )

@@ -1,183 +1,171 @@
+import React, { useState } from "react";
+import { FaLinkedin, FaTwitter, FaFacebook } from "react-icons/fa";
+
 export const OurTeam = () => {
-    const teamMembers = [
-        { src: 'src/assets/staff/adarsh_sir.png', name: 'Senchy Dark' },
-        { src: 'src/assets/staff/adarsh_sir.png', name: 'Eleten Rampel' },
-        { src: 'src/assets/staff/adarsh_sir.png', name: 'Andre Park' },
-        { src: 'src/assets/staff/adarsh_sir.png', name: 'Jonathan Clark' },
-        { src: 'src/assets/staff/adarsh_sir.png', name: 'Zenith Jark' },
-        { src: 'src/assets/staff/adarsh_sir.png', name: 'Jason Compile' },
-      ];
-  
-    return (
-      <>
-        {/* OUR TEAM MEMBER SECTION */}
-        <section
-          style={{
-            padding: '100px 0',
-            backgroundImage: 'url(./assets/images/team_member_background.jpg)',
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            textAlign: 'center',
-          }}
-        >
-          <div className="container">
-            <div className="row" data-aos="fade-up">
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h2 style={{ marginBottom: '40px', color: '#000', fontSize: '48px', fontWeight: 'bold' }}>
-                  Our Team Members
-                </h2>
-                <figure style={{ marginBottom: '60px', display: 'flex', justifyContent: 'center' }}>
-                  <img
-                    src="./assets/images/team_member_logo.png"
-                    alt="Team Logo"
-                    style={{ width: '300px', height: 'auto', borderRadius: '10px' }}
-                  />
-                </figure>
-              </div>
-            </div>
-  
-            {/* SINGLE CENTERED IMAGE AT THE TOP */}
-            <div className="row" data-aos="fade-up" style={{ marginBottom: '60px' }}>
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" style={{ display: 'flex', justifyContent: 'center' }}>
-                <div
-                  style={{
-                    width: '60%',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    borderRadius: '10px',
-                    transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'scale(1.05)';
-                    e.currentTarget.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.3)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'scale(1)';
-                    e.currentTarget.style.boxShadow = 'none';
-                  }}
-                >
-                  <img
-                    src='src/assets/staff/adarsh_sir.png' // Replace with your image path
-                    alt="Center Image"
-                    style={{
-                      width: '100%',
-                      height: '400px', // Adjusted height
-                      objectFit: 'cover',
-                      borderRadius: '10px',
-                    }}
-                  />
-                  <div
-                    style={{
-                      position: 'absolute',
-                      bottom: '20px',
-                      left: '20px',
-                      textAlign: 'left',
-                      color: '#fff',
-                      background: 'rgba(0, 0, 0, 0.6)',
-                      padding: '10px 20px',
-                      borderRadius: '5px',
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontFamily: "'Teko', sans-serif",
-                        fontWeight: '400',
-                        fontSize: '28px',
-                        lineHeight: '28px',
-                        display: 'block',
-                      }}
-                    >
-                      Team Leader
-                    </span>
-                    <p
-                      style={{
-                        fontWeight: '400',
-                        fontSize: '16px',
-                        lineHeight: '24px',
-                        marginBottom: '0',
-                      }}
-                    >
-                      Pro-Player
-                    </p>
-                  </div>
+  const teamStructure = [
+    {
+      department: "CEO",
+      members: [{ src: "src/assets/staff/masroor_sir.jpg", name: "Masroor Khan", role: "CEO" }],
+    },
+    {
+      department: "Business Department",
+      members: [
+        { src: "src/assets/staff/pooja_mam.png", name: "Pooja", role: "Branch Manager", isManager: true },
+        { src: "src/assets/staff/adarsh_sir.png", name: "Alice Johnson", role: "Employee" },
+        { src: "src/assets/staff/employee2.png", name: "Bob Brown", role: "Employee" },
+        { src: "src/assets/staff/employee3.png", name: "Charlie Davis", role: "Employee" },
+      ],
+    },
+    {
+      department: "Tech Department",
+      members: [
+        { src: "src/assets/staff/tech1.png", name: "David Wilson", role: "Tech Lead" },
+        { src: "src/assets/staff/tech2.png", name: "Eva Green", role: "Developer" },
+      ],
+    },
+    {
+      department: "A&F Department",
+      members: [
+        { src: "src/assets/staff/af1.png", name: "Frank White", role: "Accountant" },
+        { src: "src/assets/staff/af2.png", name: "Grace Black", role: "Finance Manager" },
+      ],
+    },
+  ];
+
+  return (
+    <section
+      style={{
+        padding: "100px 0",
+        backgroundImage: "url(./assets/images/team_member_background.jpg)",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        textAlign: "center",
+      }}
+    >
+      <div className="container">
+        <h2 style={{ marginBottom: "40px", color: "#000", fontSize: "48px", fontWeight: "bold" }}>
+          Our Team Members
+        </h2>
+
+        {teamStructure.map((dept, deptIndex) => (
+          <div key={deptIndex} style={{ marginBottom: "60px" }}>
+            <h3
+              style={{
+                fontSize: "36px",
+                fontWeight: "bold",
+                color: "#000",
+                marginBottom: "30px",
+                textTransform: "uppercase",
+              }}
+            >
+              {dept.department}
+            </h3>
+
+            {dept.department === "Business Department" ? (
+              <>
+                <div style={{ display: "flex", justifyContent: "center", marginBottom: "30px" }}>
+                  {dept.members
+                    .filter((member) => member.isManager)
+                    .map((manager, index) => (
+                      <MemberCard key={index} member={manager} size="30%" height="400px" />
+                    ))}
                 </div>
-              </div>
-            </div>
-  
-            {/* TEAM MEMBERS GRID */}
-            <div className="row" data-aos="fade-up" style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center' }}>
-              {teamMembers.map((member, index) => (
-                <div
-                  key={index}
-                  style={{
-                    width: '40%', // 2 images per row with some gap
-                    position: 'relative',
-                    overflow: 'hidden',
-                    borderRadius: '10px',
-                    transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
-                    marginBottom: '30px',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'scale(1.05)';
-                    e.currentTarget.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.3)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'scale(1)';
-                    e.currentTarget.style.boxShadow = 'none';
-                  }}
-                >
-                  <img
-                    src={member.src}
-                    alt={member.name}
-                    style={{
-                      width: '100%',
-                      height: '420px', // Increased height by 40%
-                      objectFit: 'cover',
-                      borderRadius: '10px',
-                    }}
-                  />
-                  <div
-                    style={{
-                      position: 'absolute',
-                      bottom: '20px',
-                      left: '20px',
-                      textAlign: 'left',
-                      color: '#fff',
-                      background: 'rgba(0, 0, 0, 0.6)',
-                      padding: '10px 20px',
-                      borderRadius: '5px',
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontFamily: "'Teko', sans-serif",
-                        fontWeight: '400',
-                        fontSize: '28px',
-                        lineHeight: '28px',
-                        display: 'block',
-                      }}
-                    >
-                      {member.name}
-                    </span>
-                    <p
-                      style={{
-                        fontWeight: '400',
-                        fontSize: '16px',
-                        lineHeight: '24px',
-                        marginBottom: '0',
-                      }}
-                    >
-                      Pro-Player
-                    </p>
-                  </div>
+
+                <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+                  {dept.members
+                    .filter((member) => !member.isManager)
+                    .map((employee, index) => (
+                      <MemberCard key={index} member={employee} size="22%" height="300px" />
+                    ))}
                 </div>
-              ))}
-            </div>
+              </>
+            ) : (
+              <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "20px" }}>
+                {dept.members.map((member, index) => (
+                  <MemberCard
+                    key={index}
+                    member={member}
+                    size={dept.department === "CEO" ? "30%" : "22%"}
+                    height={dept.department === "CEO" ? "400px" : "300px"}
+                  />
+                ))}
+              </div>
+            )}
           </div>
-        </section>
-      </>
-    );
-  };
-  
-  export default OurTeam;
+        ))}
+      </div>
+    </section>
+  );
+};
+
+const MemberCard = ({ member, size, height }) => {
+  const [hover, setHover] = useState(false);
+
+  return (
+    <div
+      style={{
+        width: size,
+        position: "relative",
+        overflow: "hidden",
+        borderRadius: "10px",
+        transition: "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
+        boxShadow: hover ? "0 15px 30px rgba(0, 0, 0, 0.4)" : "0 5px 10px rgba(0, 0, 0, 0.1)",
+        transform: hover ? "scale(1.1) rotate(3deg)" : "scale(1)",
+      }}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
+      <img
+        src={member.src}
+        alt={member.name}
+        style={{
+          width: "100%",
+          height: height,
+          objectFit: "cover",
+          borderRadius: "10px",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          bottom: "20px",
+          left: "20px",
+          textAlign: "left",
+          color: "#fff",
+          background: "rgba(0, 0, 0, 0.7)",
+          padding: "10px 20px",
+          borderRadius: "5px",
+        }}
+      >
+        <span style={{ fontSize: "28px", fontWeight: "bold" }}>{member.name}</span>
+        <p style={{ fontSize: "16px", marginBottom: "0" }}>{member.role}</p>
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          bottom: hover ? "20px" : "-50px",
+          right: "20px",
+          display: "flex",
+          gap: "10px",
+          transition: "bottom 0.3s ease-in-out, opacity 0.3s ease-in-out",
+          opacity: hover ? 1 : 0,
+        }}
+      >
+        {[FaLinkedin, FaTwitter, FaFacebook].map((Icon, idx) => (
+          <a
+            key={idx}
+            href="#"
+            style={{ fontSize: "24px", color: "#fff", transition: "transform 0.3s ease-in-out" }}
+            onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.3)")}
+            onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+          >
+            <Icon />
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default OurTeam;
