@@ -47,7 +47,14 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
+          <nav
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "2rem",
+              transition: "opacity 0.3s ease",
+            }}
+          >
             <Link
               to="/"
               style={{
@@ -55,6 +62,8 @@ const Header = () => {
                 transition: "color 0.3s ease",
                 textDecoration: "none",
               }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#0d9488")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = isActive("/").color)}
             >
               Home
             </Link>
@@ -65,6 +74,8 @@ const Header = () => {
                 transition: "color 0.3s ease",
                 textDecoration: "none",
               }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#0d9488")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = isActive("/about").color)}
             >
               About
             </Link>
@@ -75,6 +86,8 @@ const Header = () => {
                 transition: "color 0.3s ease",
                 textDecoration: "none",
               }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#0d9488")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = isActive("/contact").color)}
             >
               Contact
             </Link>
@@ -93,10 +106,16 @@ const Header = () => {
                 borderRadius: "0.375rem",
                 fontWeight: "600",
                 textDecoration: "none",
-                transition: "background-color 0.3s ease",
+                transition: "background-color 0.3s ease, transform 0.3s ease",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#00CCAA")}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#00FFCC")}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "#00CCAA";
+                e.currentTarget.style.transform = "scale(1.05)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "#00FFCC";
+                e.currentTarget.style.transform = "scale(1)";
+              }}
             >
               <Download size={18} />
               <span>Download App</span>
@@ -111,79 +130,123 @@ const Header = () => {
               backgroundColor: "transparent",
               border: "none",
               cursor: "pointer",
+              transition: "transform 0.3s ease",
             }}
             onClick={toggleMenu}
+            onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.1)")}
+            onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <nav
+        <nav
+          style={{
+            display: isMenuOpen ? "flex" : "none",
+            flexDirection: "column",
+            gap: "1rem",
+            padding: "1rem 0",
+            animation: isMenuOpen ? "slideDown 0.3s ease" : "none",
+          }}
+        >
+          <Link
+            to="/"
+            style={{
+              ...isActive("/"),
+              textDecoration: "none",
+              padding: "0.5rem 0",
+              transition: "color 0.3s ease",
+            }}
+            onClick={toggleMenu}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#0d9488")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = isActive("/").color)}
+          >
+            Home
+          </Link>
+          <Link
+            to="/about"
+            style={{
+              ...isActive("/about"),
+              textDecoration: "none",
+              padding: "0.5rem 0",
+              transition: "color 0.3s ease",
+            }}
+            onClick={toggleMenu}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#0d9488")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = isActive("/about").color)}
+          >
+            About
+          </Link>
+          <Link
+            to="/contact"
+            style={{
+              ...isActive("/contact"),
+              textDecoration: "none",
+              padding: "0.5rem 0",
+              transition: "color 0.3s ease",
+            }}
+            onClick={toggleMenu}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#0d9488")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = isActive("/contact").color)}
+          >
+            Contact
+          </Link>
+          <a
+            href="https://play.google.com/store/apps/details?id=com.fundsroom.fundsaudit&pcampaignid=web_share"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               display: "flex",
-              flexDirection: "column",
-              gap: "1rem",
-              padding: "1rem 0",
+              alignItems: "center",
+              gap: "0.5rem",
+              backgroundColor: "#00FFCC",
+              color: "#0A1023",
+              padding: "0.5rem 1rem",
+              borderRadius: "0.375rem",
+              fontWeight: "600",
+              textDecoration: "none",
+              transition: "background-color 0.3s ease, transform 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "#00CCAA";
+              e.currentTarget.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "#00FFCC";
+              e.currentTarget.style.transform = "scale(1)";
             }}
           >
-            <Link
-              to="/"
-              style={{
-                ...isActive("/"),
-                textDecoration: "none",
-                padding: "0.5rem 0",
-              }}
-              onClick={toggleMenu}
-            >
-              Home
-            </Link>
-            <Link
-              to="/about"
-              style={{
-                ...isActive("/about"),
-                textDecoration: "none",
-                padding: "0.5rem 0",
-              }}
-              onClick={toggleMenu}
-            >
-              About
-            </Link>
-            <Link
-              to="/contact"
-              style={{
-                ...isActive("/contact"),
-                textDecoration: "none",
-                padding: "0.5rem 0",
-              }}
-              onClick={toggleMenu}
-            >
-              Contact
-            </Link>
-            <a
-              href="https://play.google.com/store/apps/details?id=com.fundsroom.fundsaudit&pcampaignid=web_share"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "0.5rem",
-                backgroundColor: "#00FFCC",
-                color: "#0A1023",
-                padding: "0.5rem 1rem",
-                borderRadius: "0.375rem",
-                fontWeight: "600",
-                textDecoration: "none",
-                transition: "background-color 0.3s ease",
-              }}
-            >
-              <Download size={18} />
-              <span>Download App</span>
-            </a>
-          </nav>
-        )}
+            <Download size={18} />
+            <span>Download App</span>
+          </a>
+        </nav>
       </div>
+
+      {/* CSS for Animations */}
+      <style>
+        {`
+          @keyframes slideDown {
+            from {
+              opacity: 0;
+              transform: translateY(-20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          @media (max-width: 768px) {
+            nav {
+              display: none;
+            }
+            button {
+              display: block;
+            }
+          }
+        `}
+      </style>
     </header>
   );
 };
