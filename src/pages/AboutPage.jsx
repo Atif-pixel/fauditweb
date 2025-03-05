@@ -3,13 +3,13 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Torus } from "@react-three/drei";
 import { FileCheck, Shield, TrendingUp, Briefcase } from "lucide-react";
 import aboutImage from "../assets/funds.jpg"; // Update with your image path
-import Counter from '../components/counter';
 import masroorSir from "../assets/staff/masroor_sir.jpg";
 import poojamam from '../assets/staff/pooja_mam.png';
 import adarshsir from '../assets/staff/adarsh_sir.png';
 import prashantsir from '../assets/staff/prashant_sir.png';
 import { FaLinkedin } from "react-icons/fa";
 import PremiumTeamSection from "../components/PremiumTeamSection";
+import Journey from '../components/journey';
 
 const AboutPage = () => {
   const [isVisible, setIsVisible] = useState({
@@ -51,10 +51,10 @@ const AboutPage = () => {
 
   return (
     <div className="bg-gray-50-80">
-      {/* Hero Section with 3D Element */}
+      Hero Section with 3D Element
       <section id="hero" className="relative h-[400px] overflow-hidden">
         <div className="absolute inset-0">
-          <Canvas>
+          {/* <Canvas>
             <ambientLight intensity={0.5} />
             <directionalLight position={[10, 10, 5]} intensity={1} />
             <Torus args={[3, 1, 16, 100]} position={[0, 0, 0]}>
@@ -66,7 +66,8 @@ const AboutPage = () => {
               />
             </Torus>
             <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={2} />
-          </Canvas>
+          </Canvas> */}
+         
         </div>
 
         <div className="container mx-auto px-4 h-full flex items-center relative z-10">
@@ -127,8 +128,9 @@ const AboutPage = () => {
           </div>
         </div>
       </section>
-      <div>
-        <Counter />
+      
+        <div>
+          <Journey />
         </div>
         
       

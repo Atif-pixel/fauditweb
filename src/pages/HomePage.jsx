@@ -7,6 +7,9 @@ import World from "../components/world"
 import Safe from '../components/Safesection'
 import ScrollingImages from '../components/ScrollingImages'
 import Logo from '../components/logo';
+import Counter from '../components/counter';
+// import TrueFocus from '../components/';
+import Testimonial from '../components/TestimonialBlogSection';
 
 const HomePage = () => {
   const videoRef = useRef(null)
@@ -67,7 +70,7 @@ const HomePage = () => {
             <directionalLight position={[10, 10, 5]} intensity={1} />
             <Sphere args={[1, 100, 200]} scale={2.4}>
               <MeshDistortMaterial
-                color="#FFFFFF"
+                color="teal"
                 attach="material"
                 distort={0.5}
                 speed={2}
@@ -91,15 +94,11 @@ const HomePage = () => {
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 text-shadow">
               Modern Solutions for Financial Management{" "}
+              
               <span className="text-teal-600 animate-pulse">
                 FundsAudit
               </span>
             </h1>
-            <p className="text-lg text-gray-200 mb-8 slide-in-left">
-              FundsAudit provides innovative tools for auditing, accounting, and
-              financial management to help you take control of your finances.
-            </p>
-            
           </div>
         </div>
       </section>
@@ -131,6 +130,7 @@ const HomePage = () => {
               <ScrollingImages />
               
             </div>
+           
             <div
               className={`relative rounded-lg overflow-hidden shadow-xl ${
                 isVisible.howItWorks ? "slide-in-right" : "opacity-0"
@@ -153,6 +153,11 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+      <div>
+              
+              <Counter />
+              
+    </div>
 
       
      
@@ -229,6 +234,9 @@ const HomePage = () => {
       </div>
       <div>
         <Logo />
+      </div>
+      <div>
+        <Testimonial />
       </div>
     </div>
   )
