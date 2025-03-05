@@ -6,6 +6,7 @@ import fundsauditVideo from "../assets/videos/fundsaudit_video.mp4"
 import World from "../components/world"
 import Safe from '../components/Safesection'
 import ScrollingImages from '../components/ScrollingImages'
+import Logo from '../components/logo';
 
 const HomePage = () => {
   const videoRef = useRef(null)
@@ -225,6 +226,9 @@ const HomePage = () => {
       </div>
       <div>
         <World />
+      </div>
+      <div>
+        <Logo />
       </div>
     </div>
   )

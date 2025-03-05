@@ -1,88 +1,101 @@
 import React from "react";
 
+// Create an array of paths for SVGs stored in the public folder
+const logos = Array.from({ length: 18 }, (_, i) => `/company/logo${i + 1}.svg`);
+
 const FinancialLogos = () => {
-  const logos = [
-    { name: "BSE", img: "src/assets/logo/BSE.jpg" },
-    { name: "NSE", img: "src/assets/logo/NSE.jpg" },
-    { name: "SEBI", img: "src/assets/logo/SEBI.jpg" },
-    { name: "AMFI", img: "src/assets/logo/amfi.jpg" }
-  ];
+  // Duplicate logos to ensure continuous loop effect
+  const extendedLogos = [...logos, ...logos];
 
   return (
-    <section
-      style={{
-        margin: "40px auto",
-        background: "white",
-        padding: "20px 0",
-        overflow: "hidden",
-        position: "relative",
-        width: "100%",
-        display: "flex",
-        alignItems: "center"
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "30px",
-          width: "max-content",
-          animation: "scroll 10s linear infinite"
-        }}
-      >
-        {[...logos, ...logos].map((logo, index) => (
-          <div
-            key={index}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: "10px",
-              background: "#F3F4F6",
-              borderRadius: "12px",
-              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-              minWidth: "120px",
-              minHeight: "120px"
-            }}
-          >
-            <img
-              src={logo.img}
-              alt={logo.name}
-              style={{
-                width: "90px",
-                height: "90px",
-                objectFit: "contain"
-              }}
-            />
-          </div>
-        ))}
+    <div style={styles.container}>
+      {/* Title */}
+      <h2 style={styles.title}>Accreditations and Associations</h2>
+
+      {/* Logo Carousel */}
+      <div style={styles.logoContainer}>
+        <div
+          style={{
+            ...styles.scrollContainer,
+            animation: "scroll 50s linear infinite",
+          }}
+        >
+          {extendedLogos.map((logo, index) => (
+            <div key={index} style={styles.logoWrapper}>
+              {/* Render each SVG */}
+              <img
+                src={logo}
+                alt={`Logo ${index + 1}`}
+                style={styles.logo}
+              />
+              {/* Divider between logos */}
+              <div style={styles.logoDivider}></div>
+            </div>
+          ))}
+        </div>
       </div>
 
+      {/* Inline CSS for the animation */}
       <style>
         {`
           @keyframes scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-          }
-
-          @media (max-width: 768px) {
-            div[style*="width: max-content"] {
-              gap: 20px;
-              animation-duration: 15s;
+            0% {
+              transform: translateX(0);
             }
-            div[style*="minWidth"] {
-              min-width: 100px;
-              min-height: 100px;
-            }
-            img {
-              width: 70px !important;
-              height: 70px !important;
+            100% {
+              transform: translateX(-50%);
             }
           }
         `}
       </style>
-    </section>
+    </div>
   );
+};
+
+// Styles for the component
+const styles = {
+  container: {
+    width: "100%",
+    overflow: "hidden",
+    margin: "0 auto",
+    padding: "40px 0", // Added padding for spacing
+    backgroundColor: "#f9f9f9", // Light background for contrast
+  },
+  title: {
+    textAlign: "center",
+    fontSize: "2rem",
+    fontWeight: "bold",
+    color: "#333",
+    marginBottom: "20px",
+    textTransform: "uppercase",
+    letterSpacing: "1px",
+  },
+  logoContainer: {
+    width: "100%",
+    overflow: "hidden",
+  },
+  scrollContainer: {
+    display: "flex",
+    alignItems: "center",
+    whiteSpace: "nowrap",
+    width: "max-content",
+  },
+  logoWrapper: {
+    display: "flex",
+    alignItems: "center",
+    marginRight: "40px", // Space between logos
+  },
+  logo: {
+    width: "100px", // Adjust logo size
+    height: "auto",
+    objectFit: "contain",
+  },
+  logoDivider: {
+    width: "1px",
+    height: "50px",
+    backgroundColor: "#ccc",
+    marginLeft: "40px", // Space after the divider
+  },
 };
 
 export default FinancialLogos;

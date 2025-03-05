@@ -1,16 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const counterData = [
-  { id: 1, count: "20,000+", label: "D o w n l o a d s", top: "10%", left: "20%" },
-  { id: 2, count: "50+", label: "C i t i e s", top: "40%", left: "18%" },
-  { id: 3, count: "132cr+", label: "T r a n s a c t i o n s", bottom: "5%", left: "20%" },
-  { id: 4, count: "500cr+", label: "A U M", top: "20%", right: "20%" },
-  { id: 5, count: "18,000+", label: "Active Users", bottom: "15%", right: "20%" },
+  { id: 1, count: 20000, label: "D o w n l o a d s", top: "10%", left: "20%" },
+  { id: 2, count: 50, label: "C i t i e s", top: "40%", left: "18%" },
+  { id: 3, count: 132, label: "T r a n s a c t i o n s", bottom: "5%", left: "20%", suffix: "cr+" },
+  { id: 4, count: 500, label: "A U M", top: "20%", right: "20%", suffix: "cr+" },
+  { id: 5, count: 18000, label: "Active Users", bottom: "15%", right: "20%" },
 ];
 
 const RotatingWorld = () => {
   const globeRef = useRef(null);
   const [rotation, setRotation] = useState(0);
+  const [animatedCounts, setAnimatedCounts] = useState({});
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +22,29 @@ const RotatingWorld = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    counterData.forEach((item) => {
+      const targetCount = item.count;
+      const duration = 2000; // Animation duration in milliseconds
+      const increment = targetCount / (duration / 16); // 16ms per frame for smooth animation
+
+      let currentCount = 0;
+
+      const interval = setInterval(() => {
+        currentCount += increment;
+        if (currentCount >= targetCount) {
+          currentCount = targetCount;
+          clearInterval(interval);
+        }
+
+        setAnimatedCounts((prevCounts) => ({
+          ...prevCounts,
+          [item.id]: Math.floor(currentCount),
+        }));
+      }, 16); // 16ms for ~60fps
+    });
+  }, []);
+
   return (
     <div style={styles.container}>
       {/* World PNG */}
@@ -29,9 +53,12 @@ const RotatingWorld = () => {
       </div>
 
       {/* Counters */}
-      {counterData.map(({ id, count, label, top, bottom, left, right }) => (
+      {counterData.map(({ id, label, top, bottom, left, right, suffix }) => (
         <div key={id} style={{ ...styles.counter, top, bottom, left, right }}>
-          <span style={styles.count}>{count}</span>
+          <span style={styles.count}>
+            {animatedCounts[id]?.toLocaleString()}
+            {suffix}
+          </span>
           <span style={styles.label}>{label}</span>
         </div>
       ))}
@@ -79,19 +106,19 @@ const styles = {
     fontSize: "16px",
     letterSpacing: "1px",
   },
-  
+
   // Responsive styles for mobile
   "@media (max-width: 768px)": {
     container: {
-      height: "500px", 
+      height: "500px",
     },
     globe: {
-      width: "300px", 
+      width: "300px",
       height: "300px",
     },
     counter: {
       fontSize: "14px",
-      left: "5% !important", 
+      left: "5% !important",
       right: "5% !important",
       textAlign: "center",
     },
