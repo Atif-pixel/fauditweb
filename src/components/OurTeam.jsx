@@ -11,23 +11,23 @@ export const OurTeam = () => {
       department: "Business Department",
       members: [
         { src: "src/assets/staff/pooja_mam.png", name: "Pooja", role: "Branch Manager", isManager: true },
-        { src: "src/assets/staff/adarsh_sir.png", name: "Alice Johnson", role: "Employee" },
-        { src: "src/assets/staff/employee2.png", name: "Bob Brown", role: "Employee" },
-        { src: "src/assets/staff/employee3.png", name: "Charlie Davis", role: "Employee" },
+        { src: "src/assets/staff/adarsh_sir.png", name: "Adarsh", role: "Business Strategist" },
+        { src: "src/assets/staff/prashant_sir.png", name: "Prashant", role: "Marketing Head" },
+        { src: "src/assets/staff/employee3.png", name: "Abhishek", role: "Marketing" },
       ],
     },
     {
       department: "Tech Department",
       members: [
-        { src: "src/assets/staff/tech1.png", name: "David Wilson", role: "Tech Lead" },
-        { src: "src/assets/staff/tech2.png", name: "Eva Green", role: "Developer" },
+        { src: "src/assets/staff/arya_sir.jpeg", name: "Arya Mehta", role: "Jr SDE" },
+        { src: "src/assets/staff/nikita_mam.png", name: "Nikita Watpal", role: "Jr SDE" },
       ],
     },
     {
       department: "A&F Department",
       members: [
-        { src: "src/assets/staff/af1.png", name: "Frank White", role: "Accountant" },
-        { src: "src/assets/staff/af2.png", name: "Grace Black", role: "Finance Manager" },
+        { src: "src/assets/staff/ittika_mam.png", name: "Ittika", role: "Head of A&F" },
+        { src: "src/assets/staff/moiz_sir.jpg", name: "Moiz", role: "Finance Analyst" },
       ],
     },
   ];

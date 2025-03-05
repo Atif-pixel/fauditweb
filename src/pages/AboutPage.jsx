@@ -3,7 +3,8 @@ import { FileCheck, Shield, TrendingUp, Briefcase } from "lucide-react";
 import aboutImage from "../assets/funds.jpg";
 import OurTeam from "../components/OurTeam";
 import Journey from '../components/journey';
-import TrueFocus from '../components/TrueFocus'
+import TrueFocus from '../components/TrueFocus';
+import SpaceAnimation from '../components/SpaceAnimation'
 
 const AboutPage = () => {
   const [isVisible, setIsVisible] = useState({
@@ -20,6 +21,7 @@ const AboutPage = () => {
       threshold: 0.1,
     };
 
+
     const observerCallback = (entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -28,7 +30,7 @@ const AboutPage = () => {
         }
       });
     };
-
+    
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
     const sections = document.querySelectorAll("section[id]");
@@ -47,22 +49,18 @@ const AboutPage = () => {
     <div className="bg-gray-50-80">
    
       <section id="hero" className="relative h-[400px] overflow-hidden">
-        <div className="absolute inset-0">
-         
-        </div>
+      {/* Space Animation */}
+        <SpaceAnimation />
 
+        {/* About Us Content */}
         <div className="container mx-auto px-4 h-full flex items-center relative z-10">
           <div
             className={`max-w-2xl ${isVisible.hero ? "fade-in" : "opacity-0"}`}
           >
-           <TrueFocus 
-sentence="About Us"
-manualMode={false}
-blurAmount={5}
-borderColor="teal"
-animationDuration={2}
-pauseBetweenAnimations={1}
-/>
+            <h1 className="text-4xl font-bold text-white">About Us</h1>
+            <p className="mt-4 text-lg text-white">
+              We are a team of space enthusiasts exploring the universe!
+            </p>
           </div>
         </div>
       </section>

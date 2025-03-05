@@ -1,0 +1,51 @@
+/* SpaceAnimation.css */
+.space-container {
+    position: absolute;
+    top: 0;
+   left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+  }
+  
+  .stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../assets/Star.png') repeat; /* Update the path to your stars image */
+    animation: sparkle 2s infinite;
+  }
+  
+  @keyframes sparkle {
+    0% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
+  
+  .earth {
+    position: absolute;
+    top: 200px; /* Adjust the distance from the top */
+    right: 20px; /* Adjust the distance from the right */
+    width: 300px;
+    height: 300px;
+    background: url('../assets/earth.png') no-repeat center center; /* Update the path to your Earth image */
+    background-size: cover;
+    animation: rotateEarth 10s linear infinite;
+  }
+  @keyframes rotateEarth {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
