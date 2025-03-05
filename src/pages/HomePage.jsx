@@ -7,6 +7,11 @@ import Logo from '../components/logo';
 import Counter from '../components/counter';
 import Testimonial from '../components/TestimonialBlogSection';
 import Particles from '../components/Particles';
+import ScrollVelocity from '../components/ScrollVelocity';
+
+// Import the PNG images
+import image1 from "../assets/png/1.png"; // Replace with your actual image path
+import image2 from "../assets/png/2.png"; // Replace with your actual image path
 
 const HomePage = () => {
   const videoRef = useRef(null);
@@ -28,22 +33,24 @@ const HomePage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
+    let timeoutId;
+
     const typeAndErase = () => {
       const currentWord = rotatingWords[currentIndex];
 
       if (isTyping) {
         // Typing effect
         if (displayText.length < currentWord.length) {
-          setTimeout(() => {
+          timeoutId = setTimeout(() => {
             setDisplayText(currentWord.slice(0, displayText.length + 1));
           }, 100); // Typing speed
         } else {
-          setTimeout(() => setIsTyping(false), 1000); // Pause after typing
+          timeoutId = setTimeout(() => setIsTyping(false), 1000); // Pause after typing
         }
       } else {
         // Erasing effect
         if (displayText.length > 0) {
-          setTimeout(() => {
+          timeoutId = setTimeout(() => {
             setDisplayText(currentWord.slice(0, displayText.length - 1));
           }, 50); // Erasing speed
         } else {
@@ -53,8 +60,8 @@ const HomePage = () => {
       }
     };
 
-    const interval = setInterval(typeAndErase, 100); // Overall speed
-    return () => clearInterval(interval);
+    timeoutId = setTimeout(typeAndErase, 100); // Overall speed
+    return () => clearTimeout(timeoutId);
   }, [displayText, isTyping, currentIndex]);
 
   useEffect(() => {
@@ -114,6 +121,7 @@ const HomePage = () => {
           overflow: "hidden",
         }}
       >
+        {/* Dynamic Background Animation */}
         <div
           style={{
             position: "absolute",
@@ -125,34 +133,40 @@ const HomePage = () => {
           }}
         >
           <Particles
-            particleColors={['#ffffff', '#ffffff']}
-            particleCount={400}
+            particleColors={['#ffffff', '#4FD1C5']}
+            particleCount={200}
             particleSpread={10}
-            speed={0.1}
+            speed={0.2}
             particleBaseSize={100}
             moveParticlesOnHover={true}
-            alphaParticles={false}
+            alphaParticles={true}
             disableRotation={false}
           />
         </div>
 
+        {/* Hero Content */}
         <div
           style={{
             position: "relative",
             zIndex: 2,
-            maxWidth: "800px",
+            maxWidth: "1200px",
             padding: "0 20px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
           <h1
             style={{
-              fontSize: "4rem",
+              fontSize: "clamp(2rem, 8vw, 4rem)", // Responsive font size
               fontWeight: "bold",
-              marginBottom: "1rem",
+              marginBottom: "1.5rem",
               lineHeight: "1.2",
               display: "flex",
               flexWrap: "wrap",
               justifyContent: "center",
+              textShadow: "0 0 10px rgba(79, 209, 197, 0.8), 0 0 20px rgba(79, 209, 197, 0.6)", // Glow effect
             }}
           >
             {words.map((word, index) => (
@@ -162,7 +176,7 @@ const HomePage = () => {
                   opacity: isVisible.hero ? 1 : 0,
                   transform: isVisible.hero ? "translateY(0)" : "translateY(20px)",
                   transition: `opacity 0.5s ease-out ${index * 0.2}s, transform 0.5s ease-out ${index * 0.2}s`,
-                  marginRight: "8px", // Add spacing between words
+                  marginRight: "15px", // Add spacing between words
                 }}
               >
                 {word}
@@ -176,6 +190,8 @@ const HomePage = () => {
                 transition: `opacity 0.5s ease-out ${words.length * 0.2}s, transform 0.5s ease-out ${words.length * 0.2}s`,
                 display: "inline-block",
                 marginLeft: "8px",
+                position: "relative",
+                textShadow: "0 0 10px rgba(79, 209, 197, 0.8), 0 0 20px rgba(79, 209, 197, 0.6)", // Glow effect
               }}
             >
               {displayText}
@@ -187,10 +203,56 @@ const HomePage = () => {
                   backgroundColor: "#4FD1C5",
                   marginLeft: "4px",
                   animation: "blink 1s infinite",
+                  position: "absolute",
+                  right: "-4px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
                 }}
               ></span>
             </span>
           </h1>
+
+          {/* Add the two PNG images with moving animations */}
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "100%",
+              height: "100%",
+              zIndex: 1,
+            }}
+          >
+            <img
+              src={image1}
+              alt="Image 1"
+              style={{
+                position: "absolute",
+                top: "20%",
+                left: "10%",
+                width: "150px",
+                height: "auto",
+                borderRadius: "10px",
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                animation: "float 6s infinite ease-in-out",
+              }}
+            />
+            <img
+              src={image2}
+              alt="Image 2"
+              style={{
+                position: "absolute",
+                top: "60%",
+                right: "10%",
+                width: "150px",
+                height: "auto",
+                borderRadius: "10px",
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+                animation: "float 8s infinite ease-in-out",
+              }}
+            />
+          </div>
         </div>
       </section>
 
@@ -248,6 +310,46 @@ const HomePage = () => {
       <div>
         <Testimonial />
       </div>
+
+      {/* CSS for Animations and Responsive Design */}
+      <style>
+        {`
+          @keyframes float {
+            0%, 100% {
+              transform: translateY(0);
+            }
+            50% {
+              transform: translateY(-20px);
+            }
+          }
+
+          @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+          }
+
+          /* Responsive Styles for Mobile */
+          @media (max-width: 768px) {
+            #hero h1 {
+              font-size: clamp(1.5rem, 6vw, 3rem); /* Smaller font size for mobile */
+            }
+
+            #hero img {
+              width: 100px !important; /* Smaller images for mobile */
+            }
+
+            #hero img:nth-child(1) {
+              top: 10% !important;
+              left: 5% !important;
+            }
+
+            #hero img:nth-child(2) {
+              top: 70% !important;
+              right: 5% !important;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 };
