@@ -7,7 +7,6 @@ import Logo from '../components/logo';
 import Counter from '../components/counter';
 import Testimonial from '../components/TestimonialBlogSection';
 import Particles from '../components/Particles';
-import RotatingText from '../components/RotatingText';
 
 const HomePage = () => {
   const videoRef = useRef(null);
@@ -19,8 +18,44 @@ const HomePage = () => {
   });
 
   // Split the hero text into words
-  const heroText = "Modern Solution For Financial Management FundsAudit";
+  const heroText = "Modern Solution For Financial Management";
   const words = heroText.split(" ");
+
+  // Rotating text logic with typing and erasing effect
+  const rotatingWords = ["FundsAudit", "WealthGuard", "FinanceTrack", "MoneyMonitor"];
+  const [displayText, setDisplayText] = useState("");
+  const [isTyping, setIsTyping] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const typeAndErase = () => {
+      const currentWord = rotatingWords[currentIndex];
+
+      if (isTyping) {
+        // Typing effect
+        if (displayText.length < currentWord.length) {
+          setTimeout(() => {
+            setDisplayText(currentWord.slice(0, displayText.length + 1));
+          }, 100); // Typing speed
+        } else {
+          setTimeout(() => setIsTyping(false), 1000); // Pause after typing
+        }
+      } else {
+        // Erasing effect
+        if (displayText.length > 0) {
+          setTimeout(() => {
+            setDisplayText(currentWord.slice(0, displayText.length - 1));
+          }, 50); // Erasing speed
+        } else {
+          setIsTyping(true);
+          setCurrentIndex((prevIndex) => (prevIndex + 1) % rotatingWords.length); // Move to the next word
+        }
+      }
+    };
+
+    const interval = setInterval(typeAndErase, 100); // Overall speed
+    return () => clearInterval(interval);
+  }, [displayText, isTyping, currentIndex]);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -128,12 +163,33 @@ const HomePage = () => {
                   transform: isVisible.hero ? "translateY(0)" : "translateY(20px)",
                   transition: `opacity 0.5s ease-out ${index * 0.2}s, transform 0.5s ease-out ${index * 0.2}s`,
                   marginRight: "8px", // Add spacing between words
-                  color: word === "FundsAudit" ? "#4FD1C5" : "#fff", // Highlight "FundsAudit"
                 }}
               >
                 {word}
               </span>
             ))}
+            <span
+              style={{
+                color: "#4FD1C5", // Teal color for rotating text
+                opacity: isVisible.hero ? 1 : 0,
+                transform: isVisible.hero ? "translateY(0)" : "translateY(20px)",
+                transition: `opacity 0.5s ease-out ${words.length * 0.2}s, transform 0.5s ease-out ${words.length * 0.2}s`,
+                display: "inline-block",
+                marginLeft: "8px",
+              }}
+            >
+              {displayText}
+              <span
+                style={{
+                  display: "inline-block",
+                  width: "2px",
+                  height: "1em",
+                  backgroundColor: "#4FD1C5",
+                  marginLeft: "4px",
+                  animation: "blink 1s infinite",
+                }}
+              ></span>
+            </span>
           </h1>
         </div>
       </section>
