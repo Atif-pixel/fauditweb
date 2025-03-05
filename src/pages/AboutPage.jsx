@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { FileCheck, Shield, TrendingUp, Briefcase } from "lucide-react";
-import aboutImage from "../assets/funds.jpg"; // Update with your image path
-import PremiumTeamSection from "../components/PremiumTeamSection";
-import Joinus from "../components/Joinus";
+import aboutImage from "../assets/funds.jpg";
 import OurTeam from "../components/OurTeam";
 import Journey from '../components/journey';
+import TrueFocus from '../components/TrueFocus'
 
 const AboutPage = () => {
   const [isVisible, setIsVisible] = useState({
@@ -56,14 +55,14 @@ const AboutPage = () => {
           <div
             className={`max-w-2xl ${isVisible.hero ? "fade-in" : "opacity-0"}`}
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 text-shadow">
-              About{" "}
-              <span className="text-teal-600 animate-pulse">FundsAudit</span>
-            </h1>
-            <p className="text-lg text-gray-700 slide-in-left">
-              We're a team of financial experts dedicated to providing
-              innovative auditing and financial management solutions since 2020.
-            </p>
+           <TrueFocus 
+sentence="About Us"
+manualMode={false}
+blurAmount={5}
+borderColor="teal"
+animationDuration={2}
+pauseBetweenAnimations={1}
+/>
           </div>
         </div>
       </section>
@@ -118,7 +117,7 @@ const AboutPage = () => {
       
 
       {/* Our Services Section */}
-      <section id="services" className="py-16 bg-teal-50">
+      {/* <section id="services" className="py-16 bg-teal-50">
         <div className="container mx-auto px-4">
           <h2
             className={`section-title text-center mx-auto mb-12 ${
@@ -445,7 +444,7 @@ const AboutPage = () => {
             </div>
           </div>
         </div>
-      </section>  
+      </section>   */}
       <div>
       <OurTeam />
     

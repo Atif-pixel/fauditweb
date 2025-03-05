@@ -1,15 +1,14 @@
 import React, { useRef, useEffect, useState } from "react"
-import { Canvas } from "@react-three/fiber"
-import { OrbitControls, Sphere, MeshDistortMaterial } from "@react-three/drei"
-import { Users, Store, Building2, Play } from "lucide-react"
 import fundsauditVideo from "../assets/videos/fundsaudit_video.mp4"
 import World from "../components/world"
 import Safe from '../components/Safesection'
 import ScrollingImages from '../components/ScrollingImages'
 import Logo from '../components/logo';
 import Counter from '../components/counter';
-// import TrueFocus from '../components/';
 import Testimonial from '../components/TestimonialBlogSection';
+import Particles from '../components/Particles';
+import CircularText from '../components/CircularText';
+import RotatingText from '../components/RotatingText';
 
 const HomePage = () => {
   const videoRef = useRef(null)
@@ -63,34 +62,42 @@ const HomePage = () => {
   return (
     <div className="bg-gray-50-80">
       {/* Hero Section with 3D Element */}
-      <section id="hero" className="relative h-[600px] overflow-hidden hero-section bg-light-sky-blue">
+      <section id="hero" className="relative h-[600px] overflow-hidden hero-section bg-black pt-20 pb-32">
         <div className="absolute inset-0">
-          <Canvas>
-            <ambientLight intensity={0.1} />
-            <directionalLight position={[10, 10, 5]} intensity={1} />
-            <Sphere args={[1, 100, 200]} scale={2.4}>
-              <MeshDistortMaterial
-                color="teal"
-                attach="material"
-                distort={0.5}
-                speed={2}
-                roughness={0}
-                opacity={0.15}
-                transparent={true}
-              />
-            </Sphere>
-            <OrbitControls
-              enableZoom={false}
-              autoRotate
-              autoRotateSpeed={1.5}
-            />
-          </Canvas>
+          <Particles
+            particleColors={['#ffffff', '#ffffff']}
+            particleCount={400}
+            particleSpread={10}
+            speed={0.1}
+            particleBaseSize={100}
+            moveParticlesOnHover={true}
+            alphaParticles={false}
+            disableRotation={false}
+          />
         </div>
-        <div className="absolute inset-0 bg-black opacity-30"></div> {/* Background overlay */}
+        {/* <CircularText
+  text="FUNDS*AUDIT*"
+  onHover="speedUp"
+  spinDuration={20}
+  className="custom-class"
+/> */}
 
-        <div className="container mx-auto px-4 h-full flex items-center justify-center relative z-10">
+<RotatingText
+  texts={['FUNDSAUDIT', 'IS', 'SAFE']}
+  mainClassName="text-teal-600 text-6xl sm:text-7xl md:text-8xl font-bold overflow-hidden py-1.0 sm:py-1 md:py-2 justify-center"
+  staggerFrom={"last"}
+  initial={{ y: "100%" }}
+  animate={{ y: 0 }}
+  exit={{ y: "-120%" }}
+  splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+  transition={{ type: "spring", damping: 30, stiffness: 400 }}
+  rotationInterval={2000}
+/>
+        {/* <div className="absolute inset-0 bg-black opacity-30 py-20 pb-32"></div> 
+
+        <div className="container mx-auto px-4 h-full flex items-start justify-start relative z-10">
           <div
-            className={`max-w-2xl text-center ${isVisible.hero ? "fade-in" : "opacity-0"}`}
+            className={`max-w-2xl text-left mt-20 ${isVisible.hero ? "fade-in" : "opacity-0"}`}
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 text-shadow">
               Modern Solutions for Financial Management{" "}
@@ -100,18 +107,8 @@ const HomePage = () => {
               </span>
             </h1>
           </div>
-        </div>
+        </div> */}
       </section>
-
-      {/* Light Teal Background Section */}
-      <div className="bg-teal-100 py-8">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-teal-800">Discover Our Features</h2>
-          <p className="text-teal-700 mt-4">
-            Explore how FundsAudit can help you manage your finances efficiently.
-          </p>
-        </div>
-      </div>
 
       {/* How It Works Section */}
       <section id="howItWorks" className="py-16 bg-gradient-gray">
@@ -159,72 +156,6 @@ const HomePage = () => {
               
     </div>
 
-      
-     
-      {/* Who We Serve Section */}
-      <section id="whoWeServe" className="py-16 bg-teal-50">
-        <div className="container mx-auto px-4">
-          <h2
-            className={`section-title text-center mx-auto mb-12 ${
-              isVisible.whoWeServe ? "fade-in" : "opacity-0"
-            }`}
-          >
-            Who We Serve
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div
-              className={`card p-6 hover:translate-y-[-5px] hover:shadow-xl transition-all duration-500 ${
-                isVisible.whoWeServe ? "slide-up delay-100" : "opacity-0"
-              }`}
-            >
-              <div className="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto float">
-                <Users size={32} className="text-teal-600" />
-              </div>
-              <h3 className="text-xl font-bold text-center mb-4 hover:text-teal-600 transition-colors duration-300">
-                Individual Users
-              </h3>
-              <p className="text-gray-600 text-center">
-                Personal finance management, expense tracking, and savings goals
-                for individuals looking to take control of their finances.
-              </p>
-            </div>
-            <div
-              className={`card p-6 hover:translate-y-[-5px] hover:shadow-xl transition-all duration-500 ${
-                isVisible.whoWeServe ? "slide-up delay-300" : "opacity-0"
-              }`}
-            >
-              <div className="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto float">
-                <Store size={32} className="text-teal-600" />
-              </div>
-              <h3 className="text-xl font-bold text-center mb-4 hover:text-teal-600 transition-colors duration-300">
-                Merchants & SMBs
-              </h3>
-              <p className="text-gray-600 text-center">
-                Comprehensive accounting, inventory management, and financial
-                reporting tools for small and medium-sized businesses.
-              </p>
-            </div>
-            <div
-              className={`card p-6 hover:translate-y-[-5px] hover:shadow-xl transition-all duration-500 ${
-                isVisible.whoWeServe ? "slide-up delay-500" : "opacity-0"
-              }`}
-            >
-              <div className="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto float">
-                <Building2 size={32} className="text-teal-600" />
-              </div>
-              <h3 className="text-xl font-bold text-center mb-4 hover:text-teal-600 transition-colors duration-300">
-                Enterprises
-              </h3>
-              <p className="text-gray-600 text-center">
-                Advanced auditing, compliance management, and financial
-                analytics for large organizations with complex financial
-                structures.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-   
       {/* SAFE Section */}
       <div>
         <Safe />

@@ -48,20 +48,30 @@ const ImageSlider = () => {
         {images.map((img, index) => (
           <SwiperSlide key={index}>
             {({ isActive }) => (
-              <img
-                src={img}
-                alt={`Slide ${index}`}
+              <div
                 style={{
-                  width: isActive ? "500px" : "500px", // Enlarges the center image
-                  height: "auto", // Maintain aspect ratio
-                  transform: isActive ? "scale(1.2)" : "scale(0.9)", // Smooth scaling effect
-                  borderRadius: "15px",
-                  boxShadow: isActive
-                    ? "0px 15px 30px rgba(0, 0, 0, 0.3)"
-                    : "0px 5px 15px rgba(0, 0, 0, 0.1)", // Shadow effect for focus
-                  transition: "transform 0.5s ease-in-out",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "70vh", // Adjust height to fit within the viewport
+                  overflow: "hidden", // Ensure images don't overflow
                 }}
-              />
+              >
+                <img
+                  src={img}
+                  alt={`Slide ${index}`}
+                  style={{
+                    width: isActive ? "500px" : "400px", // Adjust width for active and inactive slides
+                    height: "100%", // Ensure height fills the container
+                    objectFit: "cover", // Ensure the image covers the area without distortion
+                    borderRadius: "15px",
+                    boxShadow: isActive
+                      ? "0px 15px 30px rgba(0, 0, 0, 0.3)"
+                      : "0px 5px 15px rgba(0, 0, 0, 0.1)", // Shadow effect for focus
+                    transition: "transform 0.5s ease-in-out, width 0.5s ease-in-out",
+                  }}
+                />
+              </div>
             )}
           </SwiperSlide>
         ))}

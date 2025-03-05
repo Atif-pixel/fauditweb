@@ -1,8 +1,4 @@
 import React from "react";
-import savingsPng from "../assets/services-5.png";
-import auditingPng from "../assets/services-6.png";
-import financePng from "../assets/services-7.png";
-import earningsPng from "../assets/services-8.png";
 
 const SafeSection = () => {
   return (
@@ -69,7 +65,7 @@ const SafeSection = () => {
                 "0px 0px 20px rgba(0, 255, 255, 0.5)";
               e.currentTarget.querySelector("p").style.opacity = "1";
               e.currentTarget.querySelector("p").style.transform = "translateY(0)";
-              e.currentTarget.querySelector("img").style.transform = "scale(1.1)";
+              e.currentTarget.querySelector(".icon").style.transform = "scale(1.1)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = "#0A1023";
@@ -77,19 +73,26 @@ const SafeSection = () => {
               e.currentTarget.querySelector("p").style.opacity = "0";
               e.currentTarget.querySelector("p").style.transform =
                 "translateY(10px)";
-              e.currentTarget.querySelector("img").style.transform = "scale(1)";
+              e.currentTarget.querySelector(".icon").style.transform = "scale(1)";
             }}
           >
-            <img
-              src={item.png}
-              alt={item.title}
+            <div
+              className="icon"
               style={{
-                width: "100px", // Adjusted image size
-                height: "100px", // Adjusted image size
+                width: "100px",
+                height: "100px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 marginBottom: "20px",
                 transition: "transform 0.3s ease-in-out",
+                fontSize: "3rem",
+                fontWeight: "bold",
+                color: "#00FFCC",
               }}
-            />
+            >
+              {item.icon} {/* Use the S A F E icon here */}
+            </div>
             <h3
               style={{
                 color: "#fff",
@@ -124,22 +127,22 @@ const cardData = [
   {
     title: "Savings",
     description: "Innovative tools to save effectively.",
-    png: savingsPng,
+    icon: "S", // S for Savings
   },
   {
-    title: "Auditing & Accounting",
+    title: "Auditing",
     description: "Professional-grade financial accuracy.",
-    png: auditingPng,
+    icon: "A", // A for Auditing
   },
   {
     title: "Finance",
     description: "Tools for budgeting & strategic planning.",
-    png: financePng,
+    icon: "F", // F for Finance
   },
   {
-    title: "Earnings & Expenses",
+    title: "Earnings",
     description: "Track & analyze your financial flows.",
-    png: earningsPng,
+    icon: "E", // E for Earnings
   },
 ];
 
